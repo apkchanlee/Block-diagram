@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css" />
+</head>
+<body>
+    <!-- content -->
+    <div id="myholder"></div>
+
+    <!-- dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+
+	<p id="demo"></p>
+
+	<script>
+	var text = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+	var obj = JSON.parse(text);
+	document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth; 
+	</script>
+
+    <!-- code -->
+    <script type="text/javascript">
+
+        var graph = new joint.dia.Graph;
+
+        var paper = new joint.dia.Paper({
+            el: document.getElementById('myholder'),
+            model: graph,
+            width: 1000,
+            height: 1000,
+            gridSize: 1
+        });
+
+        var rect = new joint.shapes.standard.Rectangle();
+        rect.position(150, 30);
+        rect.resize(150, 40);
+        rect.attr({
+            body: {
+                fill: 'red'
+            },
+            label: {
+                text: 'Battery', 
+				fill: 'white'
+            }
+        });
+        rect.addTo(graph);
+		
+		
+        var rect2 = new joint.shapes.standard.Rectangle();
+        rect2.position(350, 30);
+        rect2.resize(150, 40);
+        rect2.attr({
+            body: {
+                fill: 'green'
+            },
+            label: {
+                text: 'Antenna',
+                fill: 'white'
+            }
+        });
+        rect2.addTo(graph);
+		
+		var rect3 = new joint.shapes.standard.Rectangle();
+        rect3.position(100, 120);
+        rect3.resize(100, 100);
+        rect3.attr({
+            body: {
+                fill: 'orange'
+            },
+            label: {
+                text: 'Toggle \n\nSwitch \n\nTactile',
+                fill: 'white'
+            }
+        });
+        rect3.addTo(graph);
+		
+
+        var rect4 = rect3.clone();
+        rect4.translate(150, 0);
+        rect4.attr('label/text', 'BP \n\nECG \n\nSensor');
+        rect4.addTo(graph);
+		
+		var rect5 = new joint.shapes.standard.Rectangle();
+        rect5.position(400, 100);
+        rect5.resize(100, 150);
+        rect5.attr({
+            body: {
+                fill: 'orange'
+            },
+            label: {
+                text: '4G \n\nModule \n\nSim Card \n\nHolder \n\nMicro',
+                fill: 'white'
+            }
+        });
+        rect5.addTo(graph);
+		
+		var rect6 = new joint.shapes.standard.Rectangle();
+        rect6.position(100, 260);
+        rect6.resize(100, 120);
+        rect6.attr({
+            body: {
+                fill: 'orange'
+            },
+            label: {
+                text: 'Heart \n\nRate \n\nGPU2 \n\nSensor',
+                fill: 'white'
+            }
+        });
+        rect6.addTo(graph);
+		
+		var rect7 = new joint.shapes.standard.Rectangle();
+        rect7.position(250, 300);
+        rect7.resize(100, 80);
+        rect7.attr({
+            body: {
+                fill: 'blue'
+            },
+            label: {
+                text: 'Acrylic \n\nplate',
+                fill: 'white'
+            }
+        });
+		
+        rect7.addTo(graph);
+		
+		var rect8 = new joint.shapes.standard.Rectangle();
+        rect8.position(400, 300);
+        rect8.resize(100, 80);
+        rect8.attr({
+            body: {
+                fill: 'blue'
+            },
+            label: {
+                text: 'LED \n\n\tx3',
+                fill: 'white'
+            }
+        });
+        rect8.addTo(graph);
+		
+		
+
+        var link = new joint.shapes.standard.Link();
+        link.source(rect);
+        link.target(rect2);
+        link.addTo(graph);
+
+		var link = new joint.shapes.standard.Link();
+        link.source(rect3);
+        link.target(rect6);
+        link.addTo(graph);
+		
+		var link = new joint.shapes.standard.Link();
+        link.source(rect4);
+        link.target(rect5);
+        link.addTo(graph);
+		
+		var link = new joint.shapes.standard.Link();
+        link.source(rect7);
+        link.target(rect8);
+        link.addTo(graph);
+    </script>
+</body>
+</html>
